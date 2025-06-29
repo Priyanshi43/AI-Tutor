@@ -1,0 +1,58 @@
+{% extends 'tutorapp/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-primary mb-4">📊 Admin Dashboard</h2>
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="card text-center shadow">
+        <div class="card-body">
+          <h4 class="card-title">Total Users</h4>
+          <p class="display-6">{{ total_users }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center shadow">
+        <div class="card-body">
+          <h4 class="card-title">Students</h4>
+          <p class="display-6">{{ total_students }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center shadow">
+        <div class="card-body">
+          <h4 class="card-title">Total Quizzes</h4>
+          <p class="display-6">{{ total_quizzes }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center shadow">
+        <div class="card-body">
+          <h4 class="card-title">Average Score</h4>
+          <p class="display-6">{{ average_score }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="mt-5">🏅 Top Students</h4>
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Total Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in top_students %}
+      <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.total_score }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'tutorapp/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body text-center">
+      <h2 class="mb-4 text-success">🎉 Your Quiz Feedback</h2>
+      <p class="h5"><strong>Score:</strong> {{ score }}/{{ total }}</p>
+      <p class="h5"><strong>Percentage:</strong> {{ percentage }}%</p>
+      <div class="alert alert-info mt-3">
+        {{ feedback }}
+      </div>
+
+      {% if topic_feedback %}
+      <h4 class="mt-4">🧠 Topic-wise Feedback:</h4>
+      <ul class="list-group mb-4">
+        {% for topic, status in topic_feedback.items %}
+        <li class="list-group-item d-flex justify-content-between">
+          <strong>{{ topic }}</strong>
+          <span>{{ status }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% if topic_feedback %}
+  <h4 class="mt-4">📝 Practice Weak Topics:</h4>
+  <div class="d-flex flex-wrap gap-2">
+    {% for topic, status in topic_feedback.items %}
+      {% if status == 'Weak' %}
+        <a href="{% url 'topic_quiz' %}?topic={{ topic }}" class="btn btn-sm btn-danger shadow-sm">{{ topic }} Quiz</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+      <canvas id="topicChart" height="200"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        var ctx = document.getElementById('topicChart').getContext('2d');
+        var topicData = {{ topic_strength|safe }};
+        var labels = Object.keys(topicData);
+        var data = Object.values(topicData);
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Topic Strength (1=Strong, 0=Weak)',
+              data: data,
+              backgroundColor: 'rgba(54, 162, 235, 0.7)'
+            }]
+          },
+          options: {
+            scales: {
+              y: { min: 0, max: 1 }
+            }
+          }
+        });
+      </script>
+      {% else %}
+        <p class="text-danger mt-4">No topic-wise feedback available.</p>
+      {% endif %}
+      <a href="{% url 'quiz' %}" class="btn btn-primary btn-lg mt-4">Take Another Quiz</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

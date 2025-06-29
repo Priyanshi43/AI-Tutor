@@ -1,0 +1,14 @@
+{% extends 'tutorapp/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body text-center">
+      <h2 class="text-success mb-4">🎉 Quiz Result</h2>
+      <p class="h5"><strong>Score:</strong> {{ result.score }}/{{ result.total_questions }}</p>
+      <p class="h5"><strong>Percentage:</strong> {{ result.percentage }}%</p>
+      <div class="alert alert-info mt-3">{{ result.feedback }}</div>
+      <a href="{% url 'quiz' %}" class="btn btn-primary btn-lg mt-4">Take Another Quiz</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

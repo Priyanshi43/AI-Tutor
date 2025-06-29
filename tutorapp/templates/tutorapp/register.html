@@ -1,0 +1,16 @@
+{% extends 'tutorapp/base.html' %}
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+  <div class="card shadow">
+    <div class="card-body">
+      <h3 class="text-center mb-4 text-primary">📝 Register</h3>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success w-100">Register</button>
+      </form>
+      <p class="mt-3 text-center">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

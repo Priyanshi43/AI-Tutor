@@ -1,0 +1,43 @@
+{% extends 'tutorapp/base.html' %}
+{% block content %}
+<div class="container my-5">
+  <div class="text-center py-5 bg-gradient-primary text-white rounded shadow-lg" style="background: linear-gradient(135deg, #007bff, #6610f2);">
+    <h1 class="display-4 mb-3 fw-bold">🎓 Welcome to AI Tutor!</h1>
+    <p class="lead">Personalized quizzes & AI-powered feedback to level up your skills.</p>
+    <a href="{% url 'quiz' %}" class="btn btn-lg btn-light mt-4 me-2 shadow-sm">🚀 Start Quiz</a>
+    <a href="{% url 'login' %}" class="btn btn-lg btn-outline-light mt-4 shadow-sm">🔑 Login</a>
+  </div>
+
+  <div class="row text-center mt-5">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title text-primary fw-bold">💡 Smart Quizzes</h5>
+          <p class="card-text">Random & topic-wise quizzes with instant results.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title text-success fw-bold">📊 Detailed Feedback</h5>
+          <p class="card-text">AI-generated feedback with topic-wise analysis & scores.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title text-danger fw-bold">🏆 Track Progress</h5>
+          <p class="card-text">Monitor your performance & become a top scorer!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-5">
+    <h3 class="fw-bold mb-3">Start your journey towards excellence today! 🚀</h3>
+    <a href="{% url 'register' %}" class="btn btn-lg btn-primary shadow-sm">📝 Register Now</a>
+  </div>
+</div>
+{% endblock %}

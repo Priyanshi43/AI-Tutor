@@ -1,0 +1,41 @@
+{% extends 'tutorapp/base.html' %}
+{% block content %}
+<div class="container my-5">
+  <h2 class="text-center mb-4">📝 Quiz on {{ selected_topic }}</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    {% if questions %}
+      {% with question=questions.0 %}
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-primary text-white fw-bold">
+            Q1: {{ question.question }}
+          </div>
+          <div class="card-body">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="selected_option" value="A" required>
+              <label class="form-check-label">A) {{ question.option_a }}</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="selected_option" value="B">
+              <label class="form-check-label">B) {{ question.option_b }}</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="selected_option" value="C">
+              <label class="form-check-label">C) {{ question.option_c }}</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="selected_option" value="D">
+              <label class="form-check-label">D) {{ question.option_d }}</label>
+            </div>
+          </div>
+        </div>
+      {% endwith %}
+    {% else %}
+      <div class="alert alert-warning">No questions available for this topic.</div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-success w-100 py-2 shadow">Submit Quiz</button>
+  </form>
+</div>
+{% endblock %}
